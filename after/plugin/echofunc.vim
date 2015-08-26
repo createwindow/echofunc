@@ -363,7 +363,13 @@ function! s:GetFunctions(fun, fn_only)
         if i.cmd > 0
             let file_line=file_line . ':' . i.cmd
         endif
-        let w:res+=[name.' ('.(index(fil_tag,i)+1).'/'.len(fil_tag).') '.file_line]
+        " by yiguo on 2014-3-27
+        if g:EchoFuncNotShowPathEnabled != 1
+            let w:res+=[name.' ('.(index(fil_tag,i)+1).'/'.len(fil_tag).') '.file_line]
+        else
+            let file_line=''
+            let w:res+=[name.'('.(index(fil_tag,i)+1).'/'.len(fil_tag).')'.file_line]
+        endif
     endfor
 endfunction
 
